@@ -1,0 +1,10 @@
+#ifndef HOMEWORKS_EVM_CONSTANTS_REGISTER_FLAGS_H
+#define HOMEWORKS_EVM_CONSTANTS_REGISTER_FLAGS_H
+
+    #define FLAG_A 0x1
+    #define FLAG_B 0x2
+    #define FLAG_C 0x4
+    #define FLAG_D 0x8
+    #define FLAG_E 0x10
+
+#endif //HOMEWORKS_EVM_CONSTANTS_REGISTER_FLAGS_H
