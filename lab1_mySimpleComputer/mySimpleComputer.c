@@ -17,8 +17,8 @@ static int countFlags = sizeof(flags) / sizeof(flags[1]);
 _Bool checkReg (int reg)
 {
     _Bool checkReg = false;
-
-    for (int i = 0; i < countFlags; ++i) {
+    int i;
+    for (i = 0; i < countFlags; ++i) {
         if (reg == flags[i]) {
             checkReg = true;
             break;
@@ -27,6 +27,7 @@ _Bool checkReg (int reg)
 
     return checkReg;
 }
+
 int getRegistr(void)
 {
     return registr;
@@ -135,12 +136,33 @@ int sc_regGet (int reg, int* value)
 
 int sc_commandEncode (int command, int operand, int* value)
 {
-    // TODO
+    if (command >= 10 && command <= 76) {
+        if (operand >= 0 && operand < 128) {
+                *value = (command << 7) | operand;
+            } else {
+                return ERROR;
+            }
+        } else {
+            sc_regSet(FLAG_E, 1);
+            return ERROR;
+        }
     return 0;
 }
 
+
 int sc_commandDecode (int value, int* command, int* operand)
 {
-    // TODO
-    return 0;
+    *command = (value >> 7);
+    *operand = value & (~(*command << 7));
+
+    if (*command >= 10 && *command <= 76) {
+        if (*operand >= 0 && *operand < 128)
+            return 0;
+        else
+            return ERROR;
+    } else {
+        sc_regSet(FLAG_E, 1);
+        return ERROR;
+    }
 }
+

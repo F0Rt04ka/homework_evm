@@ -1,0 +1,1 @@
+/usr/bin/cc      CMakeFiles/homeworks_evm.dir/main.c.o  -o homeworks_evm -rdynamic libMySimpleComputer.a 

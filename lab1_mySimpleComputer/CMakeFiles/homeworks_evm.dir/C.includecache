@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/roman/homework_evm/lab1_mySimpleComputer/constantsRegisterFlags.h
+
+/home/roman/homework_evm/lab1_mySimpleComputer/main.c
+stdio.h
+-
+stdlib.h
+-
+locale.h
+-
+mySimpleComputer.h
+/home/roman/homework_evm/lab1_mySimpleComputer/mySimpleComputer.h
+
+/home/roman/homework_evm/lab1_mySimpleComputer/mySimpleComputer.h
+constantsRegisterFlags.h
+/home/roman/homework_evm/lab1_mySimpleComputer/constantsRegisterFlags.h
+

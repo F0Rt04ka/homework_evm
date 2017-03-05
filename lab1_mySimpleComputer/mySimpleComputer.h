@@ -24,6 +24,4 @@
 
     int sc_commandDecode (int value, int* command, int* operand);
 
-    int getRegistr(void);
-
 #endif //HOMEWORKS_EVM_MYSIMPLECOMPUTER_H

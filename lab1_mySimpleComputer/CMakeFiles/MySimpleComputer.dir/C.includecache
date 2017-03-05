@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/roman/homework_evm/lab1_mySimpleComputer/constantsRegisterFlags.h
+
+/home/roman/homework_evm/lab1_mySimpleComputer/mySimpleComputer.c
+stdlib.h
+-
+stdio.h
+-
+constantsRegisterFlags.h
+/home/roman/homework_evm/lab1_mySimpleComputer/constantsRegisterFlags.h
+
