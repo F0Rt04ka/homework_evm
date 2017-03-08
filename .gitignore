@@ -1,2 +1,4 @@
 */.idea/
 lab*_*/cmake-build-debug/*
+*.o
+*.a
