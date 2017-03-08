@@ -1,14 +1,14 @@
-CC = gcc
-CFLAGS = -g
-INCLUDE = -I../myTerm
-SRCS = bc_printA.c bc_box.c bc_printbigchar.c bc_setbigcharpos.c bc_getbigcharpos.c bc_bigcharwrite.c bc_bigcharread.c
-OBJS = $(SRCS:.c=.o)
+lab3_exe: main.o libmyBigChars.a
+	gcc -o lab3_exe main.o -L. -lmyBigChars
 
-.PHONY: clean
+main.o: main.c
+	gcc -c main.c
 
-all:
-	$(CC) $(INCLUDE) $(CFLAGS) -c $(SRCS)
-	ar rvs ../libs/libmyBigChars.a $(OBJS)
+libmyTBigChars.a: myBigChars.o
+	ar cr libmyBigChars.a myBigChars.o
+
+myBigChars.o: myBigChars.c myBigChars.h
+	gcc -c myBigChars.c
 
 clean:
-	rm -f *.o
+	rm -f *.o *.a lab3_exe

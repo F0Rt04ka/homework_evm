@@ -7,7 +7,6 @@
 #define ESCAPE_RESET_COLORS "\E[0m"
 #define ESCAPE_CURSOR_VISIBLE "\E[?25h\E[?8c"
 #define ESCAPE_CURSOR_INVISIBLE "\E[?25l\E[?1c"
-#define ERROR -1
 
 int mt_clrscr (void)
 {
@@ -26,7 +25,7 @@ int mt_gotoXY (int X, int Y)
         return 0;
     }
 
-    return ERROR;
+    return -1;
 }
 
 int mt_getscreensize (int *rows, int *cols)
@@ -40,7 +39,7 @@ int mt_getscreensize (int *rows, int *cols)
         return 0;
     }
 
-    return ERROR;
+    return -1;
 }
 
 int mt_setfgcolor (enum colors color)

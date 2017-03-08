@@ -1,5 +1,5 @@
-#ifndef LAB2_CONSOLE_MYTERMS_H
-#define LAB2_CONSOLE_MYTERMS_H
+#ifndef LAB2_MYTERMS_H
+#define LAB2_MYTERMS_H
 
 enum colors{
     BLACK,
@@ -24,4 +24,4 @@ int mt_setbgcolor (enum colors color);
 
 int mt_setdefaultcolors (void);
 
-#endif //LAB2_CONSOLE_MYTERMS_H
+#endif //LAB2_MYTERMS_H
