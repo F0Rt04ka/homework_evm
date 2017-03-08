@@ -22,4 +22,6 @@ int mt_setfgcolor (enum colors color);
 
 int mt_setbgcolor (enum colors color);
 
+int mt_setdefaultcolors (void);
+
 #endif //LAB2_CONSOLE_MYTERMS_H
