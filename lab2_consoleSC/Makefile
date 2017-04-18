@@ -1,18 +1,19 @@
-lab2_exe: main.o libmyTerms.a
-	gcc -g -Wall -o lab2_exe main.o -L. -lmyTerms
+CC = gcc
+CFLAGS = -g -Wall
+SRCS = myTerms.c
+OBJS = $(SRCS:.c=.o)
+
+.PHONY: clean
+
+lab2_exe: main.o lib
+	$(CC) $(CFLAGS) -o lab2_exe main.o -L../lib -lmyTerms
 
 main.o: main.c
-	gcc -c main.c
+	$(CC) $(CFLAGS) -c main.c
 
-libmyTerms.a: myTerms.o
-	ar cr libmyTerms.a myTerms.o
-
-lib: myTerms.o
-	ar cr ../lib/libmyTerms.a myTerms.o
-	rm -f *.o
-
-myTerms.o: myTerms.c myTerms.h
-	gcc -c -g -Wall myTerms.c
+lib: $(SRCS) myTerms.h
+	$(CC) $(CFLAGS) -c $(SRCS)
+	ar cr ../lib/libmyTerms.a $(OBJS)
 
 clean:
 	rm -f *.o *.a lab2_exe

@@ -1,18 +1,19 @@
-all: libmySimpleComputer.a  main.o
-	gcc -o lab1_exe main.o -L. -lmySimpleComputer
+CC = gcc
+CFLAGS = -g
+SRCS = mySimpleComputer.c
+OBJS = $(SRCS:.c=.o)
+
+.PHONY: clean
+
+lab1_exe: main.o lib
+	$(CC) $(CFLAGS) -o lab1_exe main.o -L. -lmySimpleComputer
 
 main.o: main.c
-	gcc -c main.c
+	$(CC) $(CFLAGS) -c main.c
 
-libmySimpleComputer.a: mySimpleComputer.o
-	ar cr libmySimpleComputer.a mySimpleComputer.o
-
-lib: mySimpleComputer.o
-	ar cr ../lib/libmySimpleComputer.a mySimpleComputer.o
-	rm -f *.o
-
-mySimpleComputer.o: mySimpleComputer.c constantsRegisterFlags.h
-	gcc -c mySimpleComputer.c
+lib: $(SRCS) constantsRegisterFlags.h
+	$(CC) $(CFLAGS) -c $(SRCS)
+	ar cr ../lib/libmySimpleComputer.a $(OBJS)
 
 clean:
 	rm -f *.o *.a lab1_exe
