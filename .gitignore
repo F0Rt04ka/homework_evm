@@ -2,3 +2,6 @@
 lab*_*/cmake-build-debug/*
 *.o
 *.a
+cmake-build-debug
+*lab*_exe
+lib/*

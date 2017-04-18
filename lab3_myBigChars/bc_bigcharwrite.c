@@ -1,3 +1,5 @@
+#include "myBigChars.h"
+
 int bc_bigcharwrite(int fd, int *big, int count)
 {
 	int err;

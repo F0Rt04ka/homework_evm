@@ -1,3 +1,5 @@
+#include "myBigChars.h"
+
 int bc_bigcharread(int fd, int *big, int need_count, int *count)
 {
 	int n, cnt, err;

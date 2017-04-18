@@ -1,2 +1,0 @@
-/home/roman/homework_evm/lab1_mySimpleComputer/CMakeFiles/MySimpleComputer.dir
-/home/roman/homework_evm/lab1_mySimpleComputer/CMakeFiles/homeworks_evm.dir

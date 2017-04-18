@@ -1,6 +1,17 @@
-int bc_printA(char *str)
+#include "myBigChars.h"
+
+int bc_printA(char* str)
 {
-	printf("\E(0%s\E(B", str);
-	
-	return 0;
+    int bufLength = 4 + strlen(str);
+    char* buf;
+    buf = (char*)malloc(bufLength);
+    sprintf(buf, "\E(0%s", str);
+    write(1, buf, strlen(buf));
+    free(buf);
+
+    buf = (char*)malloc(4);
+    sprintf(buf, "\E(B");
+    write(1, buf, strlen(buf));
+    
+    return 0;
 }

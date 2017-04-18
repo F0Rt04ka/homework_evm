@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <unistd.h>
 
 // Including constants for register flags
 #include "constantsRegisterFlags.h"

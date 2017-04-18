@@ -1,2 +1,0 @@
-/usr/bin/ar cr libMySimpleComputer.a  CMakeFiles/MySimpleComputer.dir/mySimpleComputer.c.o
-/usr/bin/ranlib libMySimpleComputer.a

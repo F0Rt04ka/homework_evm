@@ -5,15 +5,18 @@
 #include <string.h>
 #include <errno.h>
 #include <unistd.h>
-#include "../lab2_consoleSC/myTerm.h"
+#include "../lab2_consoleSC/myTerms.h"
 
-#define BOXCHAR_REC "a"
+#define BOXCHAR_REC 'a'
 #define BOXCHAR_BR "j"
 #define BOXCHAR_BL "m"
 #define BOXCHAR_TR "k"
 #define BOXCHAR_TL "l"
 #define BOXCHAR_VERT "x"
 #define BOXCHAR_HOR "q"
+
+#define BIG_9 {4286677503, 405823680}
+#define BIG_PLUS {4279769112, 404232447}
 
 int bc_printA(char *str);
 

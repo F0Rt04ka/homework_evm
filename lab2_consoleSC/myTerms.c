@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <sys/ioctl.h>
-
 #include "myTerms.h"
 
 #define ESCAPE_CLEAR_SCREEN "\E[H\E[J"
@@ -8,20 +5,41 @@
 #define ESCAPE_CURSOR_VISIBLE "\E[?25h\E[?8c"
 #define ESCAPE_CURSOR_INVISIBLE "\E[?25l\E[?1c"
 
+// Считает количество цифр в числе
+int countsOfDigits(int number) {
+    if (number == 0) {
+        return 1;
+    }
+
+    int count = 0;
+    while (number != 0) {
+        count++;
+        number /= 10;
+    }
+
+    return count;
+}
+
 int mt_clrscr (void)
 {
-    printf("%s", ESCAPE_CLEAR_SCREEN);
+    char* buf = (char*)calloc(strlen(ESCAPE_CLEAR_SCREEN), sizeof(char));
+    buf = ESCAPE_CLEAR_SCREEN;
+    write(1, buf, strlen(buf));
 
     return 0;
 }
 
 int mt_gotoXY (int X, int Y)
 {
-    int rows, cols;
+    int rows = 0, cols = 0;
 
     if (!mt_getscreensize(&rows, &cols))
     if ((Y < rows) && (Y >= 0) && (X < cols) && (X >= 0)) {
-        printf("\E[%d;%dH", Y, X);
+        char* buf = (char*)malloc((7 + countsOfDigits(X) + countsOfDigits(Y)) * sizeof(char));
+        sprintf(buf, "\E[%d;%dH", Y, X);
+        write(1, buf, strlen(buf));
+        free(buf);
+
         return 0;
     }
 
@@ -44,25 +62,18 @@ int mt_getscreensize (int *rows, int *cols)
 
 int mt_setfgcolor (enum colors color)
 {
-    int textColor = 30 + (int)color;
-
-    printf("\E[%dm", textColor);
+    char buf[6];
+    sprintf(buf, "\E[3%dm", (int)color);
+    write(1, buf, strlen(buf));
 
     return 0;
 }
 
 int mt_setbgcolor (enum colors color)
 {
-    int bgColor = 40 + (int)color;
-
-    printf("\E[%dm", bgColor);
-
-    return 0;
-}
-
-int mt_setdefaultcolors (void)
-{
-    printf("%s", ESCAPE_RESET_COLORS);
+    char buf[6];
+    sprintf(buf, "\E[4%dm", (int)color);
+    write(1, buf, strlen(buf));
 
     return 0;
 }
