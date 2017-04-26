@@ -1,6 +1,6 @@
 #include "myBigChars.h"
 
-int bc_printbigchar(int *big, int x, int y, enum colors fg, enum colors bg)
+int bc_printbigchar(int* big, int x, int y, enum colors fg, enum colors bg)
 {
     int maxx, maxy;
     int pos, bit;

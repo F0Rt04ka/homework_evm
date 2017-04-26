@@ -34,7 +34,7 @@ int getRegistr(void)
     return registr;
 }
 
-int sc_memoryInit()
+int sc_memoryInit(void)
 {
     arrayPtr = (int*) calloc(arraySize, sizeof(int));
 

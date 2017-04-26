@@ -14,6 +14,7 @@ int main()
 
     mt_clrscr();
 
+    // Рисование рамочек для каждой секции
     bc_box(1, 1, 61, 12);
     mt_gotoXY(25, 1);
     myPrint("Memory");
@@ -55,24 +56,33 @@ int main()
     mt_gotoXY(52, 20);
     myPrint("F6 - instructionCounter");
 
+    // Вывод ячеек памяти
     for (i = 0; i < 100; ++i) {
         mt_gotoXY(2 + ((i % 10) * 6), (i / 10) + 2);
         myPrint("+0000");
     }
 
-    int bigPlus[2] = BIG_PLUS;
-    bc_printbigchar(bigPlus, 2, 14, Black, Default);
-    int big9[2] = BIG_9;
-    bc_printbigchar(big9, 11, 14, Default, Default);
-    bc_printbigchar(big9, 20, 14, Default, Default);
-    bc_printbigchar(big9, 29, 14, Default, Default);
-    bc_printbigchar(big9, 38, 14, Default, Default);
-
+    // Одну ячейку выделяем цветом
     mt_gotoXY(20, 4);
     mt_setbgcolor(Red);
     mt_setfgcolor(White);
     myPrint("+9999");
 
+    // Рисование больших символов
+    int big[2];
+    getBigChar('+', big);
+    bc_printbigchar(big, 2, 14, Black, Default);
+    getBigChar('A', big);
+    bc_printbigchar(big, 11, 14, Default, Default);
+    getBigChar('0', big);
+    bc_printbigchar(big, 20, 14, Default, Default);
+    getBigChar('5', big);
+    bc_printbigchar(big, 29, 14, Default, Default);
+    getBigChar('E', big);
+    bc_printbigchar(big, 38, 14, Default, Default);
+
+
+    // Устанавливаем стандартные цвета и переходим под окно
     mt_setbgcolor(Default);
     mt_setfgcolor(Default);
     mt_gotoXY(1, 25);

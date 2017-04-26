@@ -6,7 +6,8 @@
 #define ESCAPE_CURSOR_INVISIBLE "\E[?25l\E[?1c"
 
 // Считает количество цифр в числе
-int countsOfDigits(int number) {
+int countsOfDigits(int number)
+{
     if (number == 0) {
         return 1;
     }
@@ -22,9 +23,7 @@ int countsOfDigits(int number) {
 
 int mt_clrscr (void)
 {
-    char* buf = (char*)calloc(strlen(ESCAPE_CLEAR_SCREEN), sizeof(char));
-    buf = ESCAPE_CLEAR_SCREEN;
-    write(1, buf, strlen(buf));
+    write(1, ESCAPE_CLEAR_SCREEN, strlen(ESCAPE_CLEAR_SCREEN));
 
     return 0;
 }
@@ -50,7 +49,7 @@ int mt_getscreensize (int *rows, int *cols)
 {
     struct winsize winSize;
 
-    if(!ioctl(0, TIOCGWINSZ, &winSize)) {
+    if (!ioctl(0, TIOCGWINSZ, &winSize)) {
         *rows = winSize.ws_row;
         *cols = winSize.ws_col;
 
