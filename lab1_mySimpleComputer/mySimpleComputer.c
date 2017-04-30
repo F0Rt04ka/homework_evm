@@ -1,51 +1,46 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-
-// Including constants for register flags
-#include "constantsRegisterFlags.h"
-
-#define true 1;
-#define false 0;
-#define ERROR -1;
+#include "mySimpleComputer.h"
 
 static size_t arraySize = 100;
 static int* arrayPtr = NULL;
 static int registr;
-static int flags[] = {FLAG_A, FLAG_B, FLAG_C, FLAG_D, FLAG_E};
-static int countFlags = sizeof(flags) / sizeof(flags[1]);
 
-_Bool checkReg (int reg)
+
+// Проверка правильности вводимого регистра
+int checkReg (int reg)
 {
-    _Bool checkReg = false;
-    int i;
-    for (i = 0; i < countFlags; ++i) {
-        if (reg == flags[i]) {
-            checkReg = true;
-            break;
-        }
+    switch (reg) {
+        case FLAG_A:
+        case FLAG_B:
+        case FLAG_C:
+        case FLAG_D:
+        case FLAG_E:
+            return 1;
+
+        default:
+            return 0;
     }
-
-    return checkReg;
 }
 
-int getRegistr(void)
-{
-    return registr;
-}
 
-int sc_memoryInit(void)
+int sc_memoryInit (void)
 {
-    arrayPtr = (int*) calloc(arraySize, sizeof(int));
+    arrayPtr = (int*)calloc(arraySize, sizeof(int));
 
-    if (arrayPtr == NULL) return ERROR; // Не удалось выделить память
+    // Не удалось выделить память
+    if (arrayPtr == NULL) {
+        return -1;
+    }
 
     return 0;
 }
 
+
 int sc_memorySet (int address, int value)
 {
-    if (arrayPtr == NULL) return ERROR;
+    // Память не инициализирована
+    if (arrayPtr == NULL) {
+        return -1;
+    }
 
     if ((address < arraySize) && (address >= 0)) {
 
@@ -54,32 +49,41 @@ int sc_memorySet (int address, int value)
         return 0;
     }
 
-    return ERROR;
+    return -1;
 }
 
-int sc_memoryGet (int address, int *value)
+
+int sc_memoryGet (int address, int* value)
 {
-    if (arrayPtr != NULL)
-        if ((address < arraySize) && (address >= 0)) {
+    // Память не инициализирована
+    if (arrayPtr == NULL) {
+        return -1;
+    }
 
-            *value = arrayPtr[address];
+    // Не верный адрес памяти
+    if ((address > arraySize) && (address < 0)) {
+        return -1;
+    }
 
-            return 0;
-        }
+    *value = arrayPtr[address];
 
-    return 1; // Ошибка
+    return 0;
 }
+
 
 int sc_memorySave (char *filename)
 {
     FILE* filePtr;
-    if ((filePtr = fopen(filename, "wb")) == NULL) return ERROR;
+    if ((filePtr = fopen(filename, "wb")) == NULL) {
+        return -1;
+    }
 
     fwrite(arrayPtr, sizeof(int), arraySize, filePtr);
     fclose(filePtr);
 
     return 0;
 }
+
 
 int sc_memoryLoad (char *filename)
 {
@@ -89,10 +93,9 @@ int sc_memoryLoad (char *filename)
     }
 
     FILE* filePtr;
-    filePtr = fopen(filename, "rb");
-
-    if (filePtr == NULL)
-        return ERROR;
+    if (filePtr = fopen(filename, "rb") == NULL) {
+        return -1;
+    }
 
     fread(arrayPtr, sizeof(int), arraySize, filePtr);
     fclose(filePtr);
@@ -100,31 +103,37 @@ int sc_memoryLoad (char *filename)
     return 0;
 }
 
+
 int sc_regInit (void)
 {
     registr = 0;
+
     return 0;
 }
 
+
 int sc_regSet (int reg, int value)
 {
-    if (!checkReg(reg))
-        return ERROR;
+    if (!checkReg(reg)) {
+        return -1;
+    }
 
    if (value == 0) {
        registr = registr & ~(reg);
    } else if (value == 1) {
        registr = registr | (reg);
    } else
-       return ERROR;
+       return -1;
 
    return 0;
 }
 
+
 int sc_regGet (int reg, int* value)
 {
-    if (!checkReg(reg))
-        return ERROR;
+    if (!checkReg(reg)) {
+        return -1;
+    }
 
     if ((registr & reg) == 0) {
         *value = 0;
@@ -135,18 +144,20 @@ int sc_regGet (int reg, int* value)
     return 0;
 }
 
+
 int sc_commandEncode (int command, int operand, int* value)
 {
     if (command >= 10 && command <= 76) {
         if (operand >= 0 && operand < 128) {
-                *value = (command << 7) | operand;
-            } else {
-                return ERROR;
-            }
+            *value = (command << 7) | operand;
         } else {
-            sc_regSet(FLAG_E, 1);
-            return ERROR;
+            return -1;
         }
+    } else {
+        sc_regSet(FLAG_E, 1);
+        return -1;
+    }
+
     return 0;
 }
 
@@ -157,13 +168,14 @@ int sc_commandDecode (int value, int* command, int* operand)
     *operand = value & (~(*command << 7));
 
     if (*command >= 10 && *command <= 76) {
-        if (*operand >= 0 && *operand < 128)
+        if (*operand >= 0 && *operand < 128) {
             return 0;
-        else
-            return ERROR;
+        } else {
+            return -1;
+        }
     } else {
         sc_regSet(FLAG_E, 1);
-        return ERROR;
+
+        return -1;
     }
 }
-

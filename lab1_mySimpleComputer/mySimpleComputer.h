@@ -1,8 +1,16 @@
 #ifndef HOMEWORKS_EVM_MYSIMPLECOMPUTER_H
 #define HOMEWORKS_EVM_MYSIMPLECOMPUTER_H
 
-    // Including constants for register flags
-    #include "constantsRegisterFlags.h"
+    #include <stdlib.h>
+    #include <stdio.h>
+    #include <unistd.h>
+
+    // Флаги регистра
+    #define FLAG_A 0x1
+    #define FLAG_B 0x2
+    #define FLAG_C 0x4
+    #define FLAG_D 0x8
+    #define FLAG_E 0x10
 
     int sc_memoryInit (void);
 
