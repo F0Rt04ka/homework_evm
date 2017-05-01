@@ -9,7 +9,7 @@ int rk_mytermsave(void)
 		return -1;
 	}
 
-	if ((save = fopen("termsettings", "wb")) == NULL) {
+	if ((save = fopen(SAVE_TERMINAL_FILE, "wb")) == NULL) {
         return -1;
     }
 

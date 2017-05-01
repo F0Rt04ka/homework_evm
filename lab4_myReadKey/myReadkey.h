@@ -8,6 +8,8 @@
 #include <unistd.h>
 #include <termios.h>
 
+#define SAVE_TERMINAL_FILE "termSettings"
+
 enum keys {
 	KEY_l,
 	KEY_s,

@@ -8,6 +8,7 @@ int rk_mytermregime(int regime, int vtime, int vmin, int echo, int sigint)
 		return -1;
 	}
 
+	// Установка режима терминала
 	if (regime == 1) {
 		options.c_lflag |= ICANON;
 	} else if (regime == 0) {
@@ -16,9 +17,12 @@ int rk_mytermregime(int regime, int vtime, int vmin, int echo, int sigint)
 		return -1;
 	}
 
+	// Для неканонического режима
 	if (regime == 0) {
-		options.c_cc[VTIME] = vtime;
-		options.c_cc[VMIN] = vmin;
+		options.c_cc[VTIME] = vtime; // Время ожидания в децисекундах
+		options.c_cc[VMIN]  = vmin; // Минимальное количество символов
+
+		// Отображать вводимые символы
 		if (echo == 1) {
 			options.c_lflag |= ECHO;
 		} else if (echo == 0) {
@@ -27,6 +31,7 @@ int rk_mytermregime(int regime, int vtime, int vmin, int echo, int sigint)
 			return -1;
 		}
 
+		// Когда принимаются любые символы из INTR, QUIT, SUSP или DSUSP, то генерировать соответствующий сигнал
 		if (sigint == 1) {
 			options.c_lflag |= ISIG;
 		} else if (sigint == 0) {

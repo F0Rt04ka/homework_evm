@@ -5,7 +5,7 @@ int rk_mytermrestore(void)
 	struct termios options;
 	FILE *save;
 
-	if ((save = fopen("termsettings", "rb")) == NULL) {
+	if ((save = fopen("termSettings", "rb")) == NULL) {
 		return -1;
 	}
 
