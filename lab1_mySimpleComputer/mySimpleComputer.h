@@ -6,11 +6,11 @@
     #include <unistd.h>
 
     // Флаги регистра
-    #define FLAG_A 0x1
-    #define FLAG_B 0x2
-    #define FLAG_C 0x4
-    #define FLAG_D 0x8
-    #define FLAG_E 0x10
+    #define FLAG_OVERFLOW 0x1
+    #define FLAG_DIVISION 0x2
+    #define FLAG_MEMORY 0x4
+    #define FLAG_INTERRUPT 0x8
+    #define FLAG_COMMAND 0x10
 
     int sc_memoryInit (void);
 

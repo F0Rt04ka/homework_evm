@@ -9,19 +9,17 @@ OBJS_TERM = $(SRCS_TERM:.c=.o)
 
 .PHONY: clean
 
-lab4_exe: Terminal main.o lib $(OBJS_TERM) $(SRCS_TERM)
-	$(CC) $(CFLAGS) -o lab4_exe main.o $(OBJS_TERM) -L../lib -lmyTerms -lmyBigChars -lmyReadKey -lmySimpleComputer
+lab4_exe: main.o lib
+	$(CC) $(CFLAGS) -o lab4_exe main.o -L../lib -lTerminal
 
 main.o: main.c
 	$(CC) $(CFLAGS) -c main.c
 
-lib: $(SRCS) $(OBJS)
-#	$(CC) $(CFLAGS) -c $(SRCS)
+lib: $(SRCS) $(OBJS) $(SRCS_TERM) $(OBJS_TERM)
 	ar cr ../lib/libmyReadKey.a $(OBJS)
-#
-#Terminal:  $(SRCS_TERM)
-#	$(CC) $(CFLAGS) -c $(SRCS_TERM)
-##	ar cr ../../lib/libTerminal.a $(OBJS_TERM)
+	cd include && ar x ../../lib/libmyBigChars.a && ar x ../../lib/libmyReadKey.a && ar x ../../lib/libmyTerms.a && ar x ../../lib/libmySimpleComputer.a
+	ar cr ../lib/libTerminal.a $(OBJS_TERM) include/*.o
+	rm -f include/*.o
 
 clean:
 	rm -f *.o lab4_exe Terminal/*.o

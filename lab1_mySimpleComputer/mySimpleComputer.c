@@ -9,11 +9,11 @@ static int registr;
 int checkReg (int reg)
 {
     switch (reg) {
-        case FLAG_A:
-        case FLAG_B:
-        case FLAG_C:
-        case FLAG_D:
-        case FLAG_E:
+        case FLAG_OVERFLOW:
+        case FLAG_DIVISION:
+        case FLAG_MEMORY:
+        case FLAG_INTERRUPT:
+        case FLAG_COMMAND:
             return 1;
 
         default:
@@ -159,7 +159,7 @@ int sc_commandEncode (int command, int operand, int* value)
             return -1;
         }
     } else {
-        sc_regSet(FLAG_E, 1);
+        sc_regSet(FLAG_COMMAND, 1);
         return -1;
     }
 
@@ -179,7 +179,7 @@ int sc_commandDecode (int value, int* command, int* operand)
             return -1;
         }
     } else {
-        sc_regSet(FLAG_E, 1);
+        sc_regSet(FLAG_COMMAND, 1);
 
         return -1;
     }

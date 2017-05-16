@@ -49,8 +49,9 @@ int keyHandler(enum keys key)
             break;
 
         case KEY_f5:
-            //TODO: accumulator
-            printf("F5\n");
+            changeAccumulator();
+            printTerminalAccumulator();
+            setDefaultString();
             break;
 
         case KEY_f6:

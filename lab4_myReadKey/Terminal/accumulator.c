@@ -38,5 +38,5 @@ void printTerminalAccumulator(void)
     if (isCommandFlag(accumulator)) {
         buf[0] = '+';
     }
-    myPrint(buf);;
+    myPrint(buf);
 }

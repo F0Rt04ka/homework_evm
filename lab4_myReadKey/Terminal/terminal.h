@@ -32,6 +32,7 @@ int getAccumulator (void);
 
 // Функции для работы с "InstructionCounter"
 void printTerminalInstructionCounter (void);
+int changeInstructionCounter (void);
 void setInstructionCounter (int number);
 int getInstructionCounter (void);
 

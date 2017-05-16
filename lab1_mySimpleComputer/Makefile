@@ -11,7 +11,7 @@ lab1_exe: main.o lib
 main.o: main.c
 	$(CC) $(CFLAGS) -c main.c
 
-lib: $(SRCS) constantsRegisterFlags.h
+lib: $(SRCS)
 	$(CC) $(CFLAGS) -c $(SRCS)
 	ar cr ../lib/libmySimpleComputer.a $(OBJS)
 
