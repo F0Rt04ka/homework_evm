@@ -2,7 +2,9 @@ CC = gcc
 CFLAGS = -g -Wall
 SRCS = rk_readkey.c rk_mytermsave.c rk_mytermrestore.c rk_mytermregime.c
 OBJS = $(SRCS:.c=.o)
-SRCS_TERM = Terminal/printTerminalBigChars.c Terminal/printTerminalMemory.c Terminal/printTerminalAllBox.c Terminal/myPrint.c Terminal/moveSelector.c Terminal/selector.c Terminal/setDefaultString.c Terminal/inputMemoryCell.c Terminal/keyHandler.c Terminal/printTerminalFlags.c
+TERMINAL_SOURCES = printTerminalBigChars printTerminalMemory printTerminalAllBox myPrint moveSelector selector setDefaultString inputMemoryCell keyHandler printTerminalFlags accumulator instructionCounter operation inputNum
+
+SRCS_TERM = $(addprefix Terminal/,$(addsuffix .c, $(TERMINAL_SOURCES)))
 OBJS_TERM = $(SRCS_TERM:.c=.o)
 
 .PHONY: clean

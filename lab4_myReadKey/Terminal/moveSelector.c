@@ -33,6 +33,7 @@ int moveSelector(enum keys key)
     if (update) {
         setSelector(selector);
         printTerminalMemory();
+        printTerminalOperation();
         setDefaultString();
     }
 

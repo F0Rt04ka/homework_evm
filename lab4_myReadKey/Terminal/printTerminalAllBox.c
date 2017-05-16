@@ -62,6 +62,9 @@ int printTerminalAllBox(void)
 
     printTerminalMemory();
     printTerminalFlags();
+    printTerminalOperation();
+    printTerminalAccumulator();
+    printTerminalInstructionCounter();
 
     setDefaultString();
 

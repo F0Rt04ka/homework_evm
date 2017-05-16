@@ -15,12 +15,25 @@
 
 // Вывод строки через write
 void myPrint (char* string);
+void myReplace (char* string);
 
 // Отрисовка ячеек памяти
 void printTerminalMemory (void);
 
 // Вывод флагов регистра
 int printTerminalFlags (void);
+
+void printTerminalOperation (void);
+
+// Функции для работы с "Accumulator"
+void printTerminalAccumulator (void);
+int changeAccumulator (void);
+int getAccumulator (void);
+
+// Функции для работы с "InstructionCounter"
+void printTerminalInstructionCounter (void);
+void setInstructionCounter (int number);
+int getInstructionCounter (void);
 
 // Установка стандартных цветов и переход на строку под терминальным окном
 void setDefaultString (void);
@@ -43,5 +56,7 @@ int keyHandler (enum keys key);
 
 // Ввод ячейки памяти
 int inputMemoryCell (void);
+
+int inputNum(int* number);
 
 #endif //HOMEWORK_EVM_TERMINAL_H
