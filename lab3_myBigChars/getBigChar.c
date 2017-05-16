@@ -2,7 +2,7 @@
 
 int getBigChar (char bigChar, int big[2])
 {
-    int bigChars[18][2] = {
+    int bigChars[19][2] = {
             {3284386815, 4291019715}, // 0
             {404232222, 4279769112},  // 1
             {4290822399, 4278387711}, // 2
@@ -20,12 +20,15 @@ int getBigChar (char bigChar, int big[2])
             {4278387711, 4278387711}, // E
             {4278387711, 50529279}, // F
             {4279769112, 404232447}, //PLUS
-            {0, 255} // MINUS
+            {0, 255}, // MINUS
+            {0, 0} // empty symbol
     };
     int selectNumber;
 
     switch (bigChar) {
         case ' ':
+            selectNumber = 18;
+            break;
         case '0':
             selectNumber = 0;
             break;

@@ -24,11 +24,15 @@ int checkReg (int reg)
 
 int sc_memoryInit (void)
 {
-    arrayPtr = (int*)calloc(arraySize, sizeof(int));
+    arrayPtr = (int*)malloc(arraySize * sizeof(int));
 
     // Не удалось выделить память
     if (arrayPtr == NULL) {
         return -1;
+    }
+
+    for (int i = 0; i < arraySize; ++i) {
+        setCommandFlag(&arrayPtr[i], 1);
     }
 
     return 0;
@@ -182,30 +186,25 @@ int sc_commandDecode (int value, int* command, int* operand)
 }
 
 
-int isCommandFlag (int address)
+int isCommandFlag (int number)
 {
-    int number;
-    if (sc_memoryGet(address, &number) != -1) {
-        int result = (number >> 14);
-        if (result == 1 || result == 0) {
-            return result;
-        }
+    int result = (number >> 14);
+    if (result == 1 || result == 0) {
+        return result;
+    } else {
+        return -1;
     }
-
-    return -1;
 }
 
 
-int setCommandFlag (int address, int flag) {
-    int number;
-    if (sc_memoryGet(address, &number) != -1) {
-        if (flag == 1) {
-            sc_memorySet(address, number | 16384);
-            return 0;
-        } else if (flag == 0) {
-            sc_memorySet(address, number & ~16384);
-            return 0;
-        }
+int setCommandFlag (int* number, int flag)
+{
+    if (flag == 1) {
+        *number = *number | 0x4000;
+        return 0;
+    } else if (flag == 0) {
+        *number = *number & ~0x4000;
+        return 0;
     }
 
     return -1;

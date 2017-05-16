@@ -32,9 +32,10 @@
 
     int sc_commandDecode (int value, int* command, int* operand);
 
-    // Проверить присутствие флага команды
-    int isCommandFlag (int address);
+    // Проверить присутствие флага команды в числе
+    int isCommandFlag (int number);
 
-    int setCommandFlag (int address, int flag);
+    // Установить или убрать флаг команды
+    int setCommandFlag (int* number, int flag);
 
 #endif //HOMEWORKS_EVM_MYSIMPLECOMPUTER_H
