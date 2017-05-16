@@ -32,9 +32,9 @@
 
     int sc_commandDecode (int value, int* command, int* operand);
 
-    // Проверить присутс
-    int checkCommandFlag (int address);
+    // Проверить присутствие флага команды
+    int isCommandFlag (int address);
 
-    int setCommandFlag (int address);
+    int setCommandFlag (int address, int flag);
 
 #endif //HOMEWORKS_EVM_MYSIMPLECOMPUTER_H

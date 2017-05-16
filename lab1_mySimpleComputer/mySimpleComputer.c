@@ -93,7 +93,8 @@ int sc_memoryLoad (char *filename)
     }
 
     FILE* filePtr;
-    if (filePtr = fopen(filename, "rb") == NULL) {
+    filePtr = fopen(filename, "rb");
+    if (filePtr == NULL) {
         return -1;
     }
 
@@ -178,4 +179,34 @@ int sc_commandDecode (int value, int* command, int* operand)
 
         return -1;
     }
+}
+
+
+int isCommandFlag (int address)
+{
+    int number;
+    if (sc_memoryGet(address, &number) != -1) {
+        int result = (number >> 14);
+        if (result == 1 || result == 0) {
+            return result;
+        }
+    }
+
+    return -1;
+}
+
+
+int setCommandFlag (int address, int flag) {
+    int number;
+    if (sc_memoryGet(address, &number) != -1) {
+        if (flag == 1) {
+            sc_memorySet(address, number | 16384);
+            return 0;
+        } else if (flag == 0) {
+            sc_memorySet(address, number & ~16384);
+            return 0;
+        }
+    }
+
+    return -1;
 }
