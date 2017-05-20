@@ -32,9 +32,11 @@ int moveSelector(enum keys key)
     // Проверяем произошло ли обновление
     if (update) {
         setSelector(selector);
+        setInstructionCounter(getSelector());
+        printTerminalInstructionCounter();
         printTerminalMemory();
-        printTerminalOperation();
         setDefaultString();
+
     }
 
     return 0;

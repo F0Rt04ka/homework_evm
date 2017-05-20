@@ -2,6 +2,7 @@
 
 int keyHandler(enum keys key)
 {
+    int value;
     switch (key) {
         case KEY_l:
             // TODO: сделать запрос имени файла для загрузки
@@ -30,18 +31,32 @@ int keyHandler(enum keys key)
             break;
 
         case KEY_r:
-            //TODO: run
-            printf("r\n");
+            sc_regGet(FLAG_INTERRUPT, &value);
+            if (value) {
+                sc_regSet(FLAG_INTERRUPT, 0);
+                timerHandler(SIGALRM);
+            } else {
+                alarm(0);
+                sc_regSet(FLAG_INTERRUPT, 1);
+                setSelector(getInstructionCounter());
+            }
+            printTerminalFlags();
             break;
 
         case KEY_t:
-            //TODO: step
-            printf("t\n");
+            timerHandler(SIGALRM);
+            setSelector(getInstructionCounter());
+            printTerminalInstructionCounter();
+            printTerminalFlags();
+            printTerminalMemory();
+            setDefaultString();
             break;
 
         case KEY_i:
-            //TODO: reset
-            printf("i\n");
+            raise(SIGUSR1);
+            setInstructionCounter(0);
+            printTerminalAllBox();
+            myPrint("Reset");
             break;
 
         case KEY_q:
@@ -55,8 +70,9 @@ int keyHandler(enum keys key)
             break;
 
         case KEY_f6:
-            //TODO: instructionCounter
-            printf("F6\n");
+            changeInstructionCounter();
+            printTerminalInstructionCounter();
+            setDefaultString();
             break;
 
         case KEY_enter:
@@ -69,6 +85,6 @@ int keyHandler(enum keys key)
         case KEY_other:
             return -1;
     }
-
+    setDefaultString();
     return 0;
 }

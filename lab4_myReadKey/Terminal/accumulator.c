@@ -25,6 +25,11 @@ int changeAccumulator()
     return 0;
 }
 
+void setAccumulator(int accum)
+{
+    accumulator = accum;
+}
+
 int getAccumulator(void)
 {
     return accumulator;

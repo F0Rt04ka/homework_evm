@@ -10,6 +10,7 @@
 #include "../../lab2_consoleSC/myTerms.h"
 #include "../../lab3_myBigChars/myBigChars.h"
 #include "../myReadkey.h"
+#include "../../lab5_signals/signals.h"
 
 #define SAVE_MEMORY_FILE "saveMemory"
 
@@ -29,6 +30,7 @@ void printTerminalOperation (void);
 void printTerminalAccumulator (void);
 int changeAccumulator (void);
 int getAccumulator (void);
+void setAccumulator(int accum);
 
 // Функции для работы с "InstructionCounter"
 void printTerminalInstructionCounter (void);

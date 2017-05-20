@@ -6,13 +6,11 @@
 #include "../lab1_mySimpleComputer/mySimpleComputer.h"
 #include "../lab3_myBigChars/myBigChars.h"
 #include "../lab2_consoleSC/myTerms.h"
-#include "myReadkey.h"
-#include "Terminal/terminal.h"
+#include "../lab4_myReadKey/myReadkey.h"
+#include "../lab4_myReadKey/Terminal/terminal.h"
 
 int main()
 {
-
-
     if (rk_mytermregime(0, 1, 1, 1, 1) != 0) {
         mt_setfgcolor(Red);
         myPrint("Ошибка установки режима терминала\n");
@@ -22,7 +20,6 @@ int main()
 
     sc_memoryInit();
     sc_regInit();
-    setSignals();
 
     if (printTerminalAllBox() != 0) {
         mt_setfgcolor(Red);

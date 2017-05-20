@@ -17,7 +17,7 @@ main.o: main.c
 
 lib: $(SRCS) $(OBJS) $(SRCS_TERM) $(OBJS_TERM)
 	ar cr ../lib/libmyReadKey.a $(OBJS)
-	cd include && ar x ../../lib/libmyBigChars.a && ar x ../../lib/libmyReadKey.a && ar x ../../lib/libmyTerms.a && ar x ../../lib/libmySimpleComputer.a
+	cd include && ar x ../../lib/libmyBigChars.a && ar x ../../lib/libmyReadKey.a && ar x ../../lib/libmyTerms.a && ar x ../../lib/libmySimpleComputer.a && ar x ../../lib/libSignals.a
 	ar cr ../lib/libTerminal.a $(OBJS_TERM) include/*.o
 	rm -f include/*.o
 

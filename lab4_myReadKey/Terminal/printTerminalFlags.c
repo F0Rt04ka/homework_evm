@@ -62,7 +62,7 @@ int printTerminalFlags(void)
         mt_gotoXY(77, 11);
 
         if (reg) {
-            myPrint("E");
+            myPrint("C");
         } else {
             myPrint("_");
         }
