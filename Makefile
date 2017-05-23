@@ -1,5 +1,5 @@
 # Создание всех либ в папку lib
-lib: libmySimpleComputer.a libmyTerms.a libmyBigChars.a libmyReadKey.a
+lib: create_lib libmySimpleComputer.a libmyTerms.a libmyBigChars.a libmyReadKey.a
 
 libmySimpleComputer.a:
 	cd lab1_mySimpleComputer && make lib
@@ -11,7 +11,7 @@ libmyReadKey.a:
 	cd lab4_myReadKey && make lib
 
 # Сборка всеx лаб с исполняемыми файлами (практически бесполезно)
-all: lab1 lab2 lab3 lab4
+all: create_lib lab1 lab2 lab3 lab4
 
 lab1:
 	cd lab1_mySimpleComputer && make
@@ -24,11 +24,18 @@ lab4:
 
 # Полная очистка
 clean_all: clean_lib
-	cd lab1_mySimpleComputer && rm -f *.o *.a lab1_exe
-	cd lab2_consoleSC && rm -f *.o *.a lab2_exe
-	cd lab3_myBigChars && rm -f *.o *.a lab3_exe
-	cd lab4_myReadKey && rm -f *.o *.a lab4_exe
+	cd lab1_mySimpleComputer && make clean
+	cd lab2_consoleSC && make clean
+	cd lab3_myBigChars && make clean
+	cd lab4_myReadKey && make clean
+	cd lab5_signals && make clean
+	cd lab6_hdd && make clean
 
 # Очистка папки с либами
 clean_lib:
 	cd lib && rm -f *.a
+
+create_lib:
+	@if [ ! -d $(DIR) ] ; then echo "creating directory `lib`" ; mkdir lib; fi
+
+.PHONY: create_lib

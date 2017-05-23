@@ -4,5 +4,4 @@ branches:
  only:
  - master
 script:
-- mkdir lib
 - make all
