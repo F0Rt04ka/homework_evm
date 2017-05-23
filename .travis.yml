@@ -4,4 +4,4 @@ branches:
  only:
  - master
 script:
-- make HANDMADE
+- make all
