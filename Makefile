@@ -12,7 +12,7 @@ libmyReadKey.a:
 
 # Сборка всеx лаб с исполняемыми файлами
 all:
-	@if [ ! -d $(DIR) ] ; then echo "creating directory `lib`" ; mkdir lib; fi
+	@if [ ! -d lib ] ; then echo "creating directory `lib`" ; mkdir lib; fi
 	cd lab1_mySimpleComputer && make
 	cd lab2_consoleSC && make
 	cd lab3_myBigChars && make
