@@ -6,7 +6,7 @@ OBJS = $(SRCS:.c=.o)
 .PHONY: clean
 
 lab1_exe: main.o lib
-	$(CC) $(CFLAGS) -o lab1_exe main.o -L. -lmySimpleComputer
+	$(CC) $(CFLAGS) -o lab1_exe main.o -L../lib -lmySimpleComputer
 
 main.o: main.c
 	$(CC) $(CFLAGS) -c main.c
