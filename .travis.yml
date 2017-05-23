@@ -1,0 +1,7 @@
+language: c
+compiler: gcc
+branches:
+ only:
+ - master
+script:
+- make HANDMADE
