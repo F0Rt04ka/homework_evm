@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -g -Wall
+CFLAGS = -g -Wall -std=c99
 SRCS = rk_readkey.c rk_mytermsave.c rk_mytermrestore.c rk_mytermregime.c
 OBJS = $(SRCS:.c=.o)
 TERMINAL_SOURCES = printTerminalBigChars printTerminalMemory printTerminalAllBox myPrint moveSelector selector setDefaultString inputMemoryCell keyHandler printTerminalFlags accumulator instructionCounter operation inputNum

@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -g
+CFLAGS = -g -Wall -std=c99
 SRCS = mySimpleComputer.c
 OBJS = $(SRCS:.c=.o)
 
